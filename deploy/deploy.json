@@ -1,0 +1,11 @@
+{
+  "build": {
+    "docker_image": {
+      "base_image": "harbor.shopeemobile.com/shopee-fe/web-frontend-jenkins-runner:node18.17.0-pnpm6.32.25-sdc0.1.864"
+    },
+    "commands": ["yarn", "yarn build"]
+  },
+  "run": {
+    "command": "node server.js"
+  }
+}

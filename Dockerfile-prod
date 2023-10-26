@@ -1,0 +1,16 @@
+FROM node:18-alpine as builder
+
+RUN apk add --no-cache libc6-compat python3 py3-pip make g++
+COPY . .
+RUN yarn install
+RUN yarn build
+
+FROM node:18-alpine
+
+RUN yarn add express vite-express
+COPY --from=builder dist ./dist
+COPY --from=builder server.js server.js
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
